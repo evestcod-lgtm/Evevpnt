@@ -10,7 +10,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y python3-pip build-essential git python3 unzip zlib1g-dev libffi-dev libssl-dev autoconf automake libtool curl make libncurses5-dev libncursesw5-dev libtinfo5 cmake
+          sudo apt-get install -y python3-pip build-essential git python3 unzip zlib1g-dev libffi-dev libssl-dev autoconf automake libtool curl make libncurses-dev libncursesw5-dev cmake
           pip3 install --user --upgrade Cython==0.29.33 buildozer
 
       - name: Download Xray Binary
