@@ -1,0 +1,27 @@
+name: Build APK
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Xray Binary
+        run: |
+          curl -L -o xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.8.4/Xray-android-arm64-v8a.zip
+          unzip xray.zip xray
+          chmod +x xray
+
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          command: buildozer android debug
+          buildozer_version: stable
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: EVEVPN-package
+          path: bin/*.apk
