@@ -19,7 +19,6 @@ jobs:
         with:
           command: buildozer android debug
           buildozer_version: stable
-          # Добавляем фикс для ошибки с пользователем:
           repository_root: .
 
       - name: Upload APK
