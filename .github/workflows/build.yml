@@ -3,7 +3,7 @@ on: [push, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
@@ -14,11 +14,13 @@ jobs:
           chmod +x xray
 
       - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
+        uses: ArtemSBulgakov/buildozer-action@v1.6.1
         id: buildozer
         with:
           command: buildozer android debug
           buildozer_version: stable
+          # Добавляем фикс для ошибки с пользователем:
+          repository_root: .
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
